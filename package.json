@@ -8,12 +8,13 @@
     "dev": "cd server && npm run dev",
     "install-all": "cd server && npm install",
     "build": "cd server && npm install --production",
-    "deploy": "pm2 start ecosystem.config.js --env production",
-    "deploy:stop": "pm2 stop compteur-des-api",
-    "deploy:restart": "pm2 restart compteur-des-api",
-    "deploy:logs": "pm2 logs compteur-des-api"
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d server"
   },
   "dependencies": {
     "pm2": "^5.3.1"
+  },
+  "devDependencies": {
+    "gh-pages": "^6.3.0"
   }
-} 
+}
