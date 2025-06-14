@@ -41,11 +41,46 @@
             margin: 5px 0;
             color: #666;
         }
+        .test-section {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e9ecef;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #result {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: white;
+            border-radius: 4px;
+            white-space: pre-wrap;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Compteur des API</h1>
+        
+        <div class="test-section">
+            <h2>Tester les API</h2>
+            <button onclick="testGetConfig()">GET /api/config</button>
+            <button onclick="testGetJets()">GET /api/jets</button>
+            <button onclick="testGetSeances()">GET /api/seances</button>
+            <button onclick="testPostJet()">POST /api/jets</button>
+            <div id="result"></div>
+        </div>
+
         <ul class="api-list">
             <li class="api-item">
                 <h3>GET /api/config</h3>
@@ -81,5 +116,60 @@
             </li>
         </ul>
     </div>
+
+    <script>
+        const API_URL = 'https://bluefox71.github.io/compteur-des-api';
+        const resultDiv = document.getElementById('result');
+
+        async function testGetConfig() {
+            try {
+                const response = await fetch(`${API_URL}/api/config`);
+                const data = await response.json();
+                resultDiv.textContent = JSON.stringify(data, null, 2);
+            } catch (error) {
+                resultDiv.textContent = `Erreur: ${error.message}`;
+            }
+        }
+
+        async function testGetJets() {
+            try {
+                const response = await fetch(`${API_URL}/api/jets`);
+                const data = await response.json();
+                resultDiv.textContent = JSON.stringify(data, null, 2);
+            } catch (error) {
+                resultDiv.textContent = `Erreur: ${error.message}`;
+            }
+        }
+
+        async function testGetSeances() {
+            try {
+                const response = await fetch(`${API_URL}/api/seances`);
+                const data = await response.json();
+                resultDiv.textContent = JSON.stringify(data, null, 2);
+            } catch (error) {
+                resultDiv.textContent = `Erreur: ${error.message}`;
+            }
+        }
+
+        async function testPostJet() {
+            try {
+                const response = await fetch(`${API_URL}/api/jets`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        type: 'test',
+                        valeur: 20,
+                        joueur: 'Test'
+                    })
+                });
+                const data = await response.json();
+                resultDiv.textContent = JSON.stringify(data, null, 2);
+            } catch (error) {
+                resultDiv.textContent = `Erreur: ${error.message}`;
+            }
+        }
+    </script>
 </body>
 </html> 

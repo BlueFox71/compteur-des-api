@@ -12,7 +12,11 @@ const PORT = 3001;
 
 // Configuration CORS
 app.use(cors({
-  origin: ['https://votre-domaine.com', 'https://www.votre-domaine.com'],
+  origin: [
+    'https://bluefox71.github.io',
+    'http://localhost:3000',
+    'http://localhost:3001'
+  ],
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true
 }));
