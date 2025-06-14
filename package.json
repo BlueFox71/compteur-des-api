@@ -1,10 +1,19 @@
 {
   "name": "compteur-des-api",
+  "homepage": "https://bluefox71.github.io/compteur-des-api",
   "version": "1.0.0",
   "description": "Application Compteur des API",
   "scripts": {
     "start": "cd server && npm start",
     "dev": "cd server && npm run dev",
-    "install-all": "cd server && npm install"
+    "install-all": "cd server && npm install",
+    "build": "cd server && npm install --production",
+    "deploy": "pm2 start ecosystem.config.js --env production",
+    "deploy:stop": "pm2 stop compteur-des-api",
+    "deploy:restart": "pm2 restart compteur-des-api",
+    "deploy:logs": "pm2 logs compteur-des-api"
+  },
+  "dependencies": {
+    "pm2": "^5.3.1"
   }
 } 

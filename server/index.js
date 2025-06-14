@@ -10,8 +10,12 @@ const __dirname = dirname(__filename);
 const app = express();
 const PORT = 3001;
 
-// Middleware
-app.use(cors());
+// Configuration CORS
+app.use(cors({
+  origin: ['https://votre-domaine.com', 'https://www.votre-domaine.com'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true
+}));
 app.use(express.json());
 
 // Chemins vers les fichiers de données
