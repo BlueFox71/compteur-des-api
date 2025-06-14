@@ -1,0 +1,10 @@
+{
+  "name": "compteur-des-api",
+  "version": "1.0.0",
+  "description": "Application Compteur des API",
+  "scripts": {
+    "start": "cd server && npm start",
+    "dev": "cd server && npm run dev",
+    "install-all": "cd server && npm install"
+  }
+} 
