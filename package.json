@@ -1,8 +1,10 @@
 {
   "name": "compteur-des-api",
-  "homepage": "https://bluefox71.github.io/compteur-des-api",
   "version": "1.0.0",
   "description": "Application Compteur des API",
+  "engines": {
+    "node": "20.x"
+  },
   "scripts": {
     "start": "cd server && npm start",
     "dev": "cd server && npm run dev",
