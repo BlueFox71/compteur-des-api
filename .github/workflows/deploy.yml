@@ -5,12 +5,19 @@ on:
     branches:
       - main
 
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
@@ -25,6 +32,11 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Configure Git
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
@@ -32,4 +44,5 @@ jobs:
           branch: gh-pages
           clean: true
           commit-message: "Deploy to GitHub Pages"
-          force: true 
+          force: true
+          token: ${{ secrets.GITHUB_TOKEN }} 
