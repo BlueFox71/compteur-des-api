@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compteur des API</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .api-list {
+            list-style: none;
+            padding: 0;
+        }
+        .api-item {
+            margin: 10px 0;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+        }
+        .api-item h3 {
+            margin: 0 0 10px 0;
+            color: #007bff;
+        }
+        .api-item p {
+            margin: 5px 0;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Compteur des API</h1>
+        <ul class="api-list">
+            <li class="api-item">
+                <h3>GET /api/config</h3>
+                <p>Récupérer la configuration</p>
+            </li>
+            <li class="api-item">
+                <h3>POST /api/config</h3>
+                <p>Mettre à jour la configuration</p>
+            </li>
+            <li class="api-item">
+                <h3>GET /api/jets</h3>
+                <p>Récupérer les jets</p>
+            </li>
+            <li class="api-item">
+                <h3>POST /api/jets</h3>
+                <p>Ajouter un nouveau jet</p>
+            </li>
+            <li class="api-item">
+                <h3>DELETE /api/jets</h3>
+                <p>Supprimer tous les jets</p>
+            </li>
+            <li class="api-item">
+                <h3>GET /api/seances</h3>
+                <p>Récupérer les séances</p>
+            </li>
+            <li class="api-item">
+                <h3>POST /api/seances</h3>
+                <p>Ajouter une nouvelle séance</p>
+            </li>
+            <li class="api-item">
+                <h3>PUT /api/seances/:id</h3>
+                <p>Modifier une séance existante</p>
+            </li>
+        </ul>
+    </div>
+</body>
+</html> 
