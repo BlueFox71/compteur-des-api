@@ -29,4 +29,7 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: server
-          branch: gh-pages 
+          branch: gh-pages
+          clean: true
+          commit-message: "Deploy to GitHub Pages"
+          force: true 
