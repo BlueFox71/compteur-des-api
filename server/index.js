@@ -7,6 +7,12 @@ import { dirname, join } from 'path';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
+// Créer le dossier data s'il n'existe pas
+const DATA_DIR = join(__dirname, 'data');
+if (!fs.existsSync(DATA_DIR)) {
+    fs.mkdirSync(DATA_DIR);
+}
+
 const app = express();
 const PORT = 3001;
 
@@ -23,10 +29,31 @@ app.use(cors({
 app.use(express.json());
 
 // Chemins vers les fichiers de données
-const CONFIG_FILE = join(__dirname, 'data.json');
-const JETS_FILE = join(__dirname, 'jets.json');
-const SEANCES_FILE = join(__dirname, 'seances.json');
-const CAMPAGNES_FILE = join(__dirname, 'campagnes.json');
+const CONFIG_FILE = join(DATA_DIR, 'data.json');
+const JETS_FILE = join(DATA_DIR, 'jets.json');
+const SEANCES_FILE = join(DATA_DIR, 'seances.json');
+const CAMPAGNES_FILE = join(DATA_DIR, 'campagnes.json');
+
+// Initialiser les fichiers s'ils n'existent pas
+async function initializeFiles() {
+    const files = [
+        { path: CONFIG_FILE, default: { joueurs: [], typesJets: [] } },
+        { path: JETS_FILE, default: { jets: [] } },
+        { path: SEANCES_FILE, default: { seances: [] } },
+        { path: CAMPAGNES_FILE, default: { campagnes: [] } }
+    ];
+
+    for (const file of files) {
+        try {
+            await fs.access(file.path);
+        } catch {
+            await fs.writeFile(file.path, JSON.stringify(file.default, null, 2));
+        }
+    }
+}
+
+// Initialiser les fichiers au démarrage
+initializeFiles().catch(console.error);
 
 // Fonction pour lire les données de configuration
 async function readConfig() {

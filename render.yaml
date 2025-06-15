@@ -6,4 +6,8 @@ services:
     startCommand: cd server && npm start
     envVars:
       - key: NODE_ENV
-        value: production 
+        value: production
+    disk:
+      name: data
+      mountPath: /opt/render/project/src/server/data
+      sizeGB: 1 

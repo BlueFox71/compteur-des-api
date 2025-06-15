@@ -25,4 +25,7 @@ logs
 
 # Build
 dist/
-build/ 
+build/
+
+# Data
+server/data/ 
