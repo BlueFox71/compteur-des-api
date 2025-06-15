@@ -11,7 +11,8 @@
     "install-all": "cd server && npm install",
     "build": "cd server && npm install --production",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d server"
+    "deploy": "gh-pages -d server",
+    "deploy-all": "node server/deploy.js"
   },
   "dependencies": {
     "pm2": "^5.3.1"

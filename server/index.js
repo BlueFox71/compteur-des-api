@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import { promises as fs } from 'fs';
+import { existsSync, mkdirSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 
@@ -9,8 +10,8 @@ const __dirname = dirname(__filename);
 
 // Créer le dossier data s'il n'existe pas
 const DATA_DIR = join(__dirname, 'data');
-if (!fs.existsSync(DATA_DIR)) {
-    fs.mkdirSync(DATA_DIR);
+if (!existsSync(DATA_DIR)) {
+    mkdirSync(DATA_DIR);
 }
 
 const app = express();
@@ -21,7 +22,8 @@ app.use(cors({
   origin: [
     'https://bluefox71.github.io',
     'http://localhost:3000',
-    'http://localhost:3001'
+    'http://localhost:3001',
+     'http://localhost:5173'
   ],
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true
@@ -79,6 +81,7 @@ async function readJets() {
 async function readSeances() {
   try {
     const data = await fs.readFile(SEANCES_FILE, 'utf8');
+    console.log("seance OK")
     return JSON.parse(data);
   } catch (error) {
     return { seances: [] };
@@ -297,6 +300,7 @@ app.put('/api/jets/:id', async (req, res) => {
   }
 });
 
+// Démarrer le serveur
 app.listen(PORT, () => {
-  // Serveur démarré sur le port 3001
+    console.log(`Serveur démarré sur le port ${PORT}`);
 }); 
